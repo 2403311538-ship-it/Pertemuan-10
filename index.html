@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ELEN STORE - Online Shop</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #faf8f5;
+    color: #29251f;
+}
+
+header {
+    background: #fff;
+    padding: 20px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    box-shadow: 0 2px 10px #0000000a;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: bold;
+    color: #a45d42;
+    letter-spacing: 2px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #333;
+    margin-left: 25px;
+    font-size: 14px;
+}
+
+nav a:hover {
+    color: #b56d50;
+}
+
+.cart {
+    background: #a45d42;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 20px;
+}
+
+.hero {
+    min-height: 430px;
+    padding: 70px 8%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #eee4d8;
+    gap: 30px;
+}
+
+.hero-text {
+    max-width: 500px;
+}
+
+.hero-text small {
+    color: #a45d42;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.hero h1 {
+    font-size: 48px;
+    margin: 20px 0;
+    line-height: 1.2;
+}
+
+.hero p {
+    color: #666;
+    line-height: 1.8;
+    margin-bottom: 25px;
+}
+
+.hero button {
+    background: #a45d42;
+    color: white;
+    border: none;
+    padding: 14px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.hero img {
+    width: 40%;
+    max-height: 330px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.section {
+    padding: 65px 8%;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.section-title h2 {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.section-title p {
+    color: #777;
+}
+
+.search {
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    padding: 13px;
+    margin: 0 auto 30px;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    outline: none;
+}
+
+.products {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+}
+
+.product {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 3px 12px #0000000a;
+    transition: .3s;
+}
+
+.product:hover {
+    transform: translateY(-5px);
+}
+
+.product img {
+    width: 100%;
+    height: 210px;
+    object-fit: cover;
+}
+
+.product-info {
+    padding: 17px;
+}
+
+.product-info h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.price {
+    color: #a45d42;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.product button {
+    background: #29251f;
+    color: white;
+    border: none;
+    padding: 11px;
+    width: 100%;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.product button:hover {
+    background: #a45d42;
+}
+
+.about {
+    background: #eee4d8;
+    text-align: center;
+    padding: 65px 10%;
+}
+
+.about h2 {
+    margin-bottom: 18px;
+}
+
+.about p {
+    color: #666;
+    line-height: 1.8;
+    max-width: 650px;
+    margin: auto;
+}
+
+footer {
+    background: #29251f;
+    color: white;
+    text-align: center;
+    padding: 25px;
+    font-size: 13px;
+}
+
+#notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #29251f;
+    color: white;
+    padding: 15px 22px;
+    border-radius: 8px;
+    display: none;
+    z-index: 20;
+}
+
+@media(max-width: 800px) {
+    header {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    nav a {
+        margin-left: 8px;
+        font-size: 12px;
+    }
+
+    .hero {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero h1 {
+        font-size: 35px;
+    }
+
+    .hero img {
+        width: 100%;
+    }
+
+    .products {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media(max-width: 450px) {
+    .products {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">ELEN.</div>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#produk">Produk</a>
+        <a href="#about">Tentang</a>
+        <a href="#produk" class="cart">
+            Keranjang (<span id="cartCount">0</span>)
+        </a>
+    </nav>
+</header>
+
+<section class="hero" id="home">
+    <div class="hero-text">
+        <small>NEW COLLECTION 2026</small>
+        <h1>Temukan Gaya Terbaikmu Bersama ELEN.</h1>
+        <p>
+            Pilihan fashion modern dengan desain sederhana,
+            nyaman digunakan, dan cocok untuk setiap aktivitas.
+        </p>
+        <button onclick="location.href='#produk'">
+            Jelajahi Produk
+        </button>
+    </div>
+
+    <img
+    src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800"
+    alt="Koleksi fashion">
+</section>
+
+<section class="section" id="produk">
+
+    <div class="section-title">
+        <h2>Koleksi Pilihan</h2>
+        <p>Temukan produk favoritmu di sini.</p>
+    </div>
+
+    <input
+        type="text"
+        class="search"
+        id="searchInput"
+        placeholder="Cari nama produk..."
+        oninput="searchProduct()">
+
+    <div class="products" id="productList">
+
+        <div class="product" data-name="Tas Wanita">
+            <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=500" alt="Tas wanita">
+            <div class="product-info">
+                <h3>Tas Wanita</h3>
+                <p class="price">Rp150.000</p>
+                <button onclick="addCart('Tas Wanita')">Tambah ke Keranjang</button>
+            </div>
+        </div>
+
+        <div class="product" data-name="Sepatu Sneakers">
+            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500" alt="Sneakers">
+            <div class="product-info">
+                <h3>Sepatu Sneakers</h3>
+                <p class="price">Rp250.000</p>
+                <button onclick="addCart('Sepatu Sneakers')">Tambah ke Keranjang</button>
+            </div>
+        </div>
+
+        <div class="product" data-name="Jam Tangan">
+            <img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=500" alt="Jam tangan">
+            <div class="product-info">
+                <h3>Jam Tangan</h3>
+                <p class="price">Rp180.000</p>
+                <button onclick="addCart('Jam Tangan')">Tambah ke Keranjang</button>
+            </div>
+        </div>
+
+        <div class="product" data-name="Kacamata Fashion">
+            <img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=500" alt="Kacamata">
+            <div class="product-info">
+                <h3>Kacamata Fashion</h3>
+                <p class="price">Rp90.000</p>
+                <button onclick="addCart('Kacamata Fashion')">Tambah ke Keranjang</button>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section class="about" id="about">
+    <h2>Tentang Lumora Store</h2>
+    <p>
+        ELEN Store merupakan toko online yang menyediakan
+        berbagai pilihan fashion dan aksesori.
+        Kami mengutamakan kualitas, kenyamanan, dan desain
+        menarik untuk melengkapi penampilan sehari-hari.
+    </p>
+</section>
+
+<footer>
+    <p>© 2026 ELEN STORE. All Rights Reserved.</p>
+    <p>Fashion | Style | Lifestyle</p>
+</footer>
+
+<div id="notification">
+    Produk berhasil ditambahkan!
+</div>
+
+<script>
+let cart = 0;
+
+function addCart(productName) {
+    cart++;
+
+    document.getElementById("cartCount").innerText = cart;
+
+    let notification =
+        document.getElementById("notification");
+
+    notification.innerText =
+        productName + " berhasil ditambahkan!";
+
+    notification.style.display = "block";
+
+    setTimeout(function() {
+        notification.style.display = "none";
+    }, 2000);
+}
+
+function searchProduct() {
+    let keyword = document
+        .getElementById("searchInput")
+        .value.toLowerCase();
+
+    let products =
+        document.querySelectorAll(".product");
+
+    products.forEach(function(product) {
+        let name =
+            product.dataset.name.toLowerCase();
+
+        if (name.includes(keyword)) {
+            product.style.display = "block";
+        } else {
+            product.style.display = "none";
+        }
+    });
+}
+</script>
+
+</body>
+</html>
